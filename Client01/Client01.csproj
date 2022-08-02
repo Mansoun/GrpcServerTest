@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="protos\Customer.proto" />
     <None Remove="protos\greet.proto" />
+    <None Remove="protos\products.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
   <ItemGroup>
     <Protobuf Include="protos\Customer.proto" GrpcServices="Client" />
     <Protobuf Include="protos\greet.proto" GrpcServices="Client" />
+    <Protobuf Include="protos\products.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

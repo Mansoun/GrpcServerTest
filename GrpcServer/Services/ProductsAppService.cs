@@ -1,18 +1,19 @@
 ﻿using Grpc.Core;
+using GrpcServer.Models;
 using static GrpcServer.ProductsService;
 
-namespace GrpcServer.Models
+namespace GrpcServer.Services
 {
-    public class ProductsAppService : ProductsServiceBase
+    public class ProductsService : ProductsServiceBase
     {
         public AppDbContext dbContext;
-        public ProductsAppService(AppDbContext DBContext)
+        public ProductsService(AppDbContext DBContext)
         {
             dbContext = DBContext;
         }
 
         #region GetAll
-        public override Task<Products> GetAll(Empty request, ServerCallContext context)
+        public override async Task<Products> GetAll(Empty request, ServerCallContext context)
         {
             Products response = new Products();
             var products = from prd in dbContext.products
@@ -26,7 +27,7 @@ namespace GrpcServer.Models
                                Price = prd.Price
                            };
             response.Items.AddRange(products.ToArray());
-            return Task.FromResult(response);
+            return await Task.FromResult(response);
         }
         #endregion
 
