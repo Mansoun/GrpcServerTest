@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace GrpcServer.Models
+namespace CacheServer.Models
 {
+
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)

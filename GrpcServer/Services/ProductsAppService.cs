@@ -47,7 +47,35 @@ namespace GrpcServer.Services
             return Task.FromResult(searchedProduct);
         }
         #endregion
+        //public override Task<Empty> PostTime(InsertTest request, ServerCallContext context)
+        //{
+        //    var numbers = request.Time;
+        //    List<ExecuteTime> lst = new List<ExecuteTime>();
+        //    for (int i = 0; i < numbers.Count(); i++)
+        //    {
+        //        lst.Add(new ExecuteTime
+        //        {
+        //            Time = numbers[i]
+        //        });
+        //    }
+        //    dbContext.executetimes.AddRange(lst);
+        //    dbContext.SaveChanges();
+        //    return Task.FromResult<Empty>(new Empty());
+        //}
 
+        public override Task<Empty> PostTime(InsertTest request, ServerCallContext context)
+        {
+            var numbers = request.Time;
+            dbContext.executetimes.Add(new ExecuteTime {Time = numbers,Method="Grpc" });
+            dbContext.SaveChanges();
+            return Task.FromResult<Empty>(new Empty());
+        }
+
+
+
+        #region InsertData
+
+        #endregion
 
 
     }

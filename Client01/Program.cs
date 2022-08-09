@@ -3,7 +3,7 @@ using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcServer;
 
-
+#region Test
 //var input = new HelloRequest { Name = "Reza" };
 //var channel = GrpcChannel.ForAddress("http://localhost:5210");
 //var client = new Greeter.GreeterClient(channel);
@@ -30,15 +30,23 @@ using GrpcServer;
 
 //    }
 //}
-
-
-
-
+#endregion
 
 var channelNew = GrpcChannel.ForAddress("http://localhost:5210");
-var sss = new ProductsService.ProductsServiceClient(channelNew);
+var Server = new ProductsService.ProductsServiceClient(channelNew);
+List<long> taketimes = new List<long>();
+for (int i = 0; i < 10; i++)
+{
+    Task.Delay(10000);
+    var watch1 = System.Diagnostics.Stopwatch.StartNew();
+    var requestssss = Server.GetAll(new Empty());
+    watch1.Stop();
+    taketimes.Add(watch1.ElapsedMilliseconds);
+    var insertdata = Server.PostTimeAsync(new InsertTest { Time = watch1.ElapsedMilliseconds });
+}
+Console.ReadLine();
 
-var requestsss =  sss.GetAll(new Empty());
+
 
 
 

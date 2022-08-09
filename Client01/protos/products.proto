@@ -11,8 +11,14 @@ service ProductsService {
     rpc Post(Product) returns(Product);
     rpc Put(Product) returns(Product);
     rpc Delete(ProductRowIdFilter) returns(Empty);
+    rpc PostTime(InsertTest) returns (Empty);
 }
 message Empty {}
+
+message InsertTest{
+   int64 time=1;
+}
+
 message Product {
     int32 ProductRowId = 1;
     string ProductId = 2;
